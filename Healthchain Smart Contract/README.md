@@ -1,4 +1,4 @@
-## HealthChain: Secure Patient-Driven Decentralized Medical Record Exchange
+# HealthChain: Secure Patient-Driven Decentralized Medical Record Exchange
 
 "HealthChain" aims to revolutionize how medical records are managed and shared, placing control firmly in the hands of patients while ensuring security, privacy, and interoperability. This concept not only fosters trust between patients and healthcare providers but also paves the way for a more efficient and secure healthcare information exchange.
 
@@ -9,54 +9,54 @@ HealthChain addresses this critical issue by leveraging blockchain technology to
 
 ## Core Features
 
- # Decentralized Identity Verification: 
+ ## Decentralized Identity Verification: 
  Patients and healthcare providers have unique blockchain-based identities. This ensures secure and verifiable interactions.
 
-# Permissioned Record Access: 
+## Permissioned Record Access: 
 Patients grant or revoke access to their medical records through smart contracts. Only authorized entities (as permitted by the patient) can view or update records.
 
- # Immutable Audit Trail: 
+ ## Immutable Audit Trail: 
  Every access or modification of a medical record is recorded on the blockchain. This provides an immutable history of who accessed what and when, enhancing transparency and trust.
 
-# Data Encryption: 
+## Data Encryption: 
 patient medical records data are encrypted. This ensures that data privacy is maintained, even if the blockchain is public.
 
- # Smart Contract for Consent Management: 
+ ## Smart Contract for Consent Management: 
  HealthChain smart contracts are developed to  manage consents for medical record access. Only a verified hospital can add a patient or doctor, only the patient can approve a verified doctor to access or update the patient's medical record.
 
- # Patient-Centric Interface: 
+ ## Patient-Centric Interface: 
  A user-friendly interface for patients to easily manage access permissions, view access logs, and receive notifications for access requests.
 
-# Healthcare Provider Portal: 
+## Healthcare Provider Portal: 
 A secure portal for healthcare providers to request access to patient records, update medical data (as permitted), and view patient-consented information.
 
-## Challenges and Considerations
+# Challenges and Considerations
 
-- # Scalability: 
+- ## Scalability: 
 Blockchain networks, especially those using smart contracts like Ethereum, can face scalability issues. Solutions such as layer 2 scaling solutions or alternative blockchains might be needed. Lisk L2 is the perfect match as it provides faster transaction time at a lower gas fee and is also interoperable as a superchain collective.
 
-- # Data Storage: 
+- ## Data Storage: 
 Blockchain is not suited for storing large volumes of data like images or detailed medical records. Use off-chain storage solutions for the data itself, with blockchain managing access and integrity checks. Light.house provides the ipfs and ipns options for decentralized storage.
-- # Regulatory Compliance: 
+- ## Regulatory Compliance: 
 HealthChain complies with healthcare regulations and data protection laws (like HIPAA in the US or GDPR in Europe). This includes considerations for data encryption, patient consent, and data portability.
 
-- # Interoperability Standards: 
+- ## Interoperability Standards: 
 HealthChain is compatible with existing healthcare data standards (like HL7, FHIR) for easier integration with current systems.
 
 ## Prototype Development
 
-1. # Smart Contract Development: 
+1. ## Smart Contract Development: 
 A Solidity smart contract developed with hardhat tool was developed to handle identity verification, access permissions, and the audit trail of record access.
 
-2. # Blockchain Network: 
+2. ## Blockchain Network: 
 Lisk L2 blockchain  for lower transaction costs, speed, interoperability and security.
 
-3. # Frontend Application: 
+3. ## Frontend Application: 
 Develop a patient and healthcare provider interface using Nextjs and integrate with blockchain using libraries like  ethers.js.
 
 
 
-## HealthChain Smart Contract Documentation
+# HealthChain Smart Contract Documentation
 
 The HealthChain smart contract facilitates the management of medical records on the blockchain. It allows hospitals to create and update patient records securely while maintaining access control and privacy.
 The contract deployer can whitelist verified hospitals only. Whitelisted hospitals can call the register hospital function to register the hospital, giving control to the hospital.
@@ -67,69 +67,69 @@ A verified doctor can view and update a patient’s medical record.
 ## Contract Structure
 The contract consists of several key components:
 
-# Struct: Record - 
+## Struct: Record - 
 Represents a medical record containing a unique identifier (id) and a hash of the medical data (dataHash).
 
 ## State Variables:
-# owner: 
+## owner: 
 Address of the contract deployer. Owner can whitelist and approve hospitals only.
-# patientRecords: 
+## patientRecords: 
 Mapping of patient addresses to arrays of patient Record structs.
-# accessPermissions: 
+## accessPermissions: 
 Mapping of patient addresses to mappings of doctor addresses to boolean access rights. Checks if the doctor is approved to access the patient’s records.
-# hospitals: 
+## hospitals: 
 Mapping of hospital addresses to boolean values indicating the hospital registration status.
-# whitelist: 
+## whitelist: 
 Mapping of addresses to boolean values indicating hospitals whitelisting status.
-# doctors: 
+## doctors: 
 Mapping of doctor addresses to boolean values indicating doctors whitelisting status.
-# doctorHospital: 
+## doctorHospital: 
 Mapping of doctor addresses to their associated hospital addresses.
 
 ## Events:
-# RecordAccessGranted: 
+## RecordAccessGranted: 
 Fired when a doctor is granted access to a patient's record.
-# RecordAccessRevoked: 
+## RecordAccessRevoked: 
 Fired when a doctor's access to a patient's record is revoked.
-# RecordUpdated: 
+## RecordUpdated: 
 Fired when a patient's record is updated.
-# RecordCreated: 
+## RecordCreated: 
 Fired when a new patient record is created by a hospital.
-# AddedToWhitelist: 
+## AddedToWhitelist: 
 Fired when an address is added to the whitelist.
-# RemovedFromWhitelist: 
+## RemovedFromWhitelist: 
 Fired when an address is removed from the whitelist.
-# HospitalRegistered: 
+## HospitalRegistered: 
 Fired when a hospital is registered.
 
 ## Access Control
-# onlyHospital: 
+## onlyHospital: 
 Modifier that restricts certain functions to be executed only by registered hospitals.
-# onlyOwner: 
+## onlyOwner: 
 Modifier that allows only the contract deployer to perform certain actions.
-# onlyWhitelisted: 
+## onlyWhitelisted: 
 Modifier that ensures only whitelisted addresses can perform specific actions.
-# onlyDoctorFromWhitelistedHospital: 
+## onlyDoctorFromWhitelistedHospital: 
 Modifier that allows only whitelisted doctors from whitelisted hospitals to update records.
 
 ## Functions
-# createRecord: 
+## createRecord: 
 Allows hospitals to create a new medical record for a patient.
-# grantDoctorAccess / revokeDoctorAccess: 
+## grantDoctorAccess / revokeDoctorAccess: 
 Allows hospitals to grant or revoke access for doctors to view patient records.
-# hasAccess: 
+## hasAccess: 
 Checks if a doctor has access to a patient's records.
-# getRecordDataHash: 
+## getRecordDataHash: 
 Retrieves the hash of a patient's record data.
-# registerHospital: 
+## registerHospital: 
 Registers a whitelisted hospital.
-# addHospitalToWhitelist / removeHospitalFromWhitelist: 
+## addHospitalToWhitelist / removeHospitalFromWhitelist: 
 Adds or removes a hospital from the whitelist.
-# isHospital: 
+## isHospital: 
 Checks if an address is a registered hospital.
-# updateRecord: 
+## updateRecord: 
 Allows verified doctors from whitelisted hospitals to update patient records.
-# addDoctorToWhitelist / removeDoctorFromWhitelist: 
+## addDoctorToWhitelist / removeDoctorFromWhitelist: 
 Adds or removes a doctor from the whitelist.
 
 ## Usage
