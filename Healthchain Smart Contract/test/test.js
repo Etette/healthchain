@@ -30,16 +30,16 @@ describe("HealthRecords", function () {
   });
 
   it("Hospital should create a patient medical record", async function () {
-    const dataHash = "Patient record data";
+    const dataHash = "0x00";
     await healthRecords.connect(hospital).createRecord(patient.address, dataHash);
     const retrievedDataHash = await healthRecords.connect(hospital).getPatientRecord(patient.address);
     expect(retrievedDataHash).to.equal(dataHash);
   });
 
   it("it should prevent creating duplicate medical records for a patient", async function () {
-    await healthRecords.connect(hospital).createRecord(patient.address, "Record data");
+    await healthRecords.connect(hospital).createRecord(patient.address, "0x00");
     await expect(
-      healthRecords.connect(hospital).createRecord(patient.address, "Another record data")
+      healthRecords.connect(hospital).createRecord(patient.address, "0x00")
     ).to.be.revertedWith("Patient record already exist");
   });
   
@@ -65,14 +65,14 @@ describe("HealthRecords", function () {
 
   it("Doctor should get a patient's record", async function () {
     await healthRecords.connect(hospital).addDoctorTohospital(doctor.address);
-    await healthRecords.connect(hospital).createRecord(patient.address, "record1");
+    await healthRecords.connect(hospital).createRecord(patient.address, "0x01");
     const dataHash = await healthRecords.connect(doctor).getPatientRecord(patient.address);
-    expect(dataHash).to.equal("record1");
+    expect(dataHash).to.equal("0x01");
   });
 
   it("doctor should update patient record", async function () {
-    const initialDataHash = "Initial record data";
-    const newDataHash = "Updated record data";
+    const initialDataHash = "0x01";
+    const newDataHash = "0x00";
     await healthRecords.connect(hospital).createRecord(patient.address, initialDataHash);
     await healthRecords.connect(hospital).addDoctorTohospital(doctor.address);
     await healthRecords.connect(patient).grantDoctorAccess(doctor.address);

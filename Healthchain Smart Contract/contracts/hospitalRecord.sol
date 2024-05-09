@@ -5,7 +5,7 @@ pragma solidity ^0.8.19;
 contract HealthRecords {
     struct Record {
         uint id;
-        string dataHash;
+        bytes dataHash;
     }
 
     uint256 private recordID;
@@ -21,8 +21,8 @@ contract HealthRecords {
 
     event doctorAccessGranted(address indexed patient, address indexed doctor);
     event doctorAccessRevoked(address indexed patient, address indexed doctor);
-    event PatientRecordUpdated(address indexed patient, uint recordId, string dataHash);
-    event PatientRecordCreated(address indexed hospital, address indexed _patient, uint256 recordId, string _dataHash);
+    event PatientRecordUpdated(address indexed patient, uint recordId, bytes dataHash);
+    event PatientRecordCreated(address indexed hospital, address indexed _patient, uint256 recordId, bytes _dataHash);
     event hospitalAddedToWhitelist(address indexed hospital);
     event hospitalRemovedFromwhitelisted(address indexed hospital);
     event RegisteredHospital(address indexed hospital);
@@ -51,7 +51,7 @@ contract HealthRecords {
 
     constructor() {owner = msg.sender;}
 
-     function createRecord(address _patient, string memory _dataHash) external onlyHospital {
+     function createRecord(address _patient, bytes memory _dataHash) external onlyHospital {
         require(_patient != address(0), "Invalid patient address");
         require(bytes(_dataHash).length > 0, "Empty datahash param");
         
@@ -68,7 +68,7 @@ contract HealthRecords {
         
     }
 
-    function updatePatientRecord(address _patient, string calldata _dataHash) external onlyDoctor {
+    function updatePatientRecord(address _patient, bytes memory _dataHash) external onlyDoctor {
         require(_patient != address(0), "Invalid patient address");
         require(bytes(_dataHash).length > 0, "Empty record");
         //require(patientRecords[_patient][recordID].id != 0, "no record found"); // Check if record exists
@@ -83,7 +83,7 @@ contract HealthRecords {
         emit PatientRecordUpdated(_patient, currentRecordID, _dataHash);
     }
 
-    function getPatientRecord(address _patient) external view returns (string memory) {
+    function getPatientRecord(address _patient) external view returns (bytes memory) {
         // require(latestPatientRecord[_patient].id != 0, "No record found"); // Check if record exists
         require(hospital[msg.sender] || doctor[msg.sender], "Not authourized"); // only hospital or doctor can view records
         return latestPatientRecord[_patient].dataHash; // Return the data hash of the latest record
