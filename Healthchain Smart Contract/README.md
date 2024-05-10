@@ -77,3 +77,6 @@ Adds or removes a doctor from the whitelist.
 ## Usage
 The HealthChain smart contract provides a secure and transparent platform for managing medical records. Hospitals can create and update patient records while maintaining access control and privacy. Doctors can be granted access to view and update patient records, ensuring seamless collaboration and efficient healthcare delivery.
 
+### Smart contract address:
+0xd5DAE25D2707f17278716299d0cE7fF28A3FAbA3
+
