@@ -4,8 +4,8 @@ export type Medication = {
 };
 
 export type MedicalRecord = {
-    id: number;
-    patientName: string;
+    id: string;
+    name: string;
     diagnosis: string;
     medications: Medication[];
     doctor: string;
@@ -17,7 +17,6 @@ export type Doctor = {
     id: string;
     name: string;
     walletAddress: string;
-    image: string;
     specialization: string;
     hospitalAffiliation: string;
     whitelisted: boolean;
@@ -26,7 +25,6 @@ export type Doctor = {
 export type Hospital = {
     id: string;
     name: string;
-    image: string;
     walletAddress: string;
     whitelisted: boolean;
     whitelist: string[];
@@ -36,6 +34,5 @@ export type Patient = {
     id: string;
     name: string;
     walletAddress: string;
-    image: string;
     whitelist: string[];
 };
