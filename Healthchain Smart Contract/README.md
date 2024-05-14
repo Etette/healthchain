@@ -1,6 +1,7 @@
 ## HealthChain Smart Contract Documentation
 
 The HealthChain smart contract facilitates the management of medical records on the blockchain. It allows hospitals to create and update patient records securely while maintaining access control and privacy.
+
 The contract deployer can whitelist verified hospitals only. Whitelisted hospitals can call the register hospital function to register the hospital, giving control to the hospital.
 A registered hospital can add a patient record, verify a doctor and also revoke a doctor’s access.
 The patient can approve/revoke a verified doctor access to view or update the patient’s record.
@@ -74,8 +75,9 @@ Allows verified doctors from whitelisted hospitals to update patient records.
 ## addDoctorToWhitelist / removeDoctorFromWhitelist: 
 Adds or removes a doctor from the whitelist.
 
-## Usage
-The HealthChain smart contract provides a secure and transparent platform for managing medical records. Hospitals can create and update patient records while maintaining access control and privacy. Doctors can be granted access to view and update patient records, ensuring seamless collaboration and efficient healthcare delivery.
+## Demo
+[Visit HealthChain](https://healthchain-v1.vercel.app/)
+
 
 ### Smart contract address:
 0xd5DAE25D2707f17278716299d0cE7fF28A3FAbA3
